@@ -20,3 +20,25 @@ export const fetchProducts = () => async (dispatch, getState) => {
     }
   };
 
+
+
+  export const fetchSingleProduct = (id) => async (dispatch, getState) => {
+    dispatch({
+      type: "FETCH_SINGLE_PRODUCT_REQUEST",
+    });
+
+    const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+     console.log(response.data)
+    try {
+      dispatch({
+        type: "FETCH_SINGLE_PRODUCT_SUCCESS",
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "FETCH_SINGLE_PRODUCT_FAILURE",
+        error,
+      });
+    }
+  };
+

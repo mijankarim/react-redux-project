@@ -1,34 +1,35 @@
 const initialState = {
-    products: [],
+    product: {},
     loading: false,
     error: null
 }
 
-const productsReducer = (state= initialState, action) => {
+const singleProductReducer = (state= initialState, action) => {
      switch(action.type){
-         case 'FETCH_PRODUCTS_REQUEST':
+         case 'FETCH_SINGLE_PRODUCT_REQUEST':
              return {
                  ...state,
                  loading:true,
                  error: null
              }
-          case 'FETCH_PRODUCTS_SUCCESS':
+          case 'FETCH_SINGLE_PRODUCT_SUCCESS':
               return {
                   ...state,
                   loading: false,
-                  products: action.payload
+                  product: action.payload
               } 
-           case 'FETCH_PRODUCTS_FAILURE':
+           case 'FETCH_SINGLE_PRODUCT_FAILURE':
                return {
                    ...state,
-                   products: [],
+                   product: [],
                    loading: false,
                    error: action.error
-               }    
+               } 
+             
 
           default:
               return state;   
      }
 }
 
-export default productsReducer;
+export default singleProductReducer;
